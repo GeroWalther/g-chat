@@ -1,21 +1,18 @@
 import { Text, View, Image, StyleSheet } from "react-native";
-function ChatListItem() {
+function ChatListItem({ chat }) {
   return (
     <View style={styles.container}>
-      <Image
-        source={require("../../../assets/assets/images/lukas.jpeg")}
-        style={styles.img}
-      />
+      <Image source={{ uri: chat.user.image }} style={styles.img} />
       <View style={styles.content}>
         <View style={styles.row}>
           <Text numberOfLines={1} style={styles.name}>
-            Lukas
+            {chat.user.name}
           </Text>
-          <Text style={styles.subTile}>7:30</Text>
+          <Text style={styles.subTile}>{chat.lastMessage.createdAt}</Text>
         </View>
 
         <Text numberOfLines={2} style={styles.subTitle}>
-          Oke iadsuc
+          {chat.lastMessage.text}
         </Text>
       </View>
     </View>
@@ -39,7 +36,6 @@ const styles = StyleSheet.create({
   },
   content: {
     flex: 1,
-    fontWeight: "bold",
     borderBottomColor: "#bbbbbb",
     borderBottomWidth: StyleSheet.hairlineWidth,
   },
@@ -48,6 +44,7 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   name: {
+    fontWeight: "bold",
     flex: 1,
   },
   subTitle: {
