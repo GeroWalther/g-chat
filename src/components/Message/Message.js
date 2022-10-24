@@ -13,7 +13,7 @@ const Message = ({ message }) => {
       style={[
         styles.container,
         {
-          backgroundColor: isMyMessage() ? "#ff8f937a" : "white",
+          backgroundColor: isMyMessage() ? "#ff6d6d61" : "#ffffffa1",
           alignSelf: isMyMessage() ? "flex-end" : "flex-start",
         },
       ]}
@@ -34,6 +34,16 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 10,
     maxWidth: "80%",
+
+    shadowColor: "#ff6d6dff",
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.22,
+    shadowRadius: 2.22,
+
+    elevation: 3,
   },
   time: {
     color: "gray",
