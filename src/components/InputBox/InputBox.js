@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   input: {
-    fontSize: 18,
+    fontSize: 16,
 
     flex: 1,
     backgroundColor: "white",

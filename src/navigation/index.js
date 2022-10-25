@@ -3,6 +3,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { Colors } from "../../Constants/Colors";
 
 import ChatScreen from "../screens/ChatScreen";
+import ContactsScreen from "../screens/ContactsScreen";
 import MainTabNavigator from "./MainTabNav";
 
 const Stack = createNativeStackNavigator();
@@ -21,6 +22,7 @@ function Navigator() {
           }}
         />
         <Stack.Screen name="Chat" component={ChatScreen} />
+        <Stack.Screen name="Contacts" component={ContactsScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

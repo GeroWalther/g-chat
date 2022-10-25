@@ -56,9 +56,10 @@ const MainTabNavigator = () => {
       <Tab.Screen
         name="Chats"
         component={ChatsScreen}
-        options={{
+        options={({ navigation }) => ({
           headerRight: () => (
             <MaterialCommunityIcons
+              onPress={() => navigation.navigate("Contacts")}
               name="message-plus-outline"
               size={24}
               color={Colors.primaryPink}
@@ -68,7 +69,7 @@ const MainTabNavigator = () => {
             paddingRight: 25,
             marginLeft: -25,
           },
-        }}
+        })}
       />
       <Tab.Screen name="Camera" component={NotImplementedScreen} />
       <Tab.Screen name="Settings" component={NotImplementedScreen} />
