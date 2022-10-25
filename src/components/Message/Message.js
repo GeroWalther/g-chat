@@ -1,6 +1,7 @@
 import { View, Text, StyleSheet } from "react-native";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
+import { Colors } from "../../../Constants/Colors";
 dayjs.extend(relativeTime);
 
 const Message = ({ message }) => {
@@ -13,7 +14,7 @@ const Message = ({ message }) => {
       style={[
         styles.container,
         {
-          backgroundColor: isMyMessage() ? "#ff6d6d61" : "#ffffffa1",
+          backgroundColor: isMyMessage() ? Colors.chatBG : Colors.whiteChatBG,
           alignSelf: isMyMessage() ? "flex-end" : "flex-start",
         },
       ]}
@@ -35,7 +36,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     maxWidth: "80%",
 
-    shadowColor: "#ff6d6dff",
+    shadowColor: "#000",
     shadowOffset: {
       width: 0,
       height: 1,
@@ -46,7 +47,7 @@ const styles = StyleSheet.create({
     elevation: 3,
   },
   time: {
-    color: "gray",
+    color: Colors.primary200,
     alignSelf: "flex-end",
   },
 });

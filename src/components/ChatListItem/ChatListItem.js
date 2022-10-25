@@ -1,19 +1,27 @@
-import { Text, View, Image, StyleSheet } from "react-native";
+import { Text, View, Image, StyleSheet, Pressable } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
+import { Colors } from "../../../Constants/Colors";
 dayjs.extend(relativeTime);
 
 function ChatListItem({ chat }) {
+  const navigation = useNavigation();
+
+  function chatNavigation() {
+    navigation.navigate("Chat", { id: chat.id, name: chat.user.name });
+  }
+
   return (
-    <View style={styles.container}>
+    <Pressable onPress={chatNavigation} style={styles.container}>
       <Image source={{ uri: chat.user.image }} style={styles.img} />
       <View style={styles.content}>
         <View style={styles.row}>
           <Text numberOfLines={1} style={styles.name}>
             {chat.user.name}
           </Text>
-          <Text style={styles.subTile}>
+          <Text style={styles.time}>
             {dayjs(chat.lastMessage.createdAt).fromNow(true)}
           </Text>
         </View>
@@ -22,7 +30,7 @@ function ChatListItem({ chat }) {
           {chat.lastMessage.text}
         </Text>
       </View>
-    </View>
+    </Pressable>
   );
 }
 
@@ -43,7 +51,7 @@ const styles = StyleSheet.create({
   },
   content: {
     flex: 1,
-    borderBottomColor: "#bbbbbb",
+    borderBottomColor: Colors.gray400,
     borderBottomWidth: StyleSheet.hairlineWidth,
   },
   row: {
@@ -56,5 +64,8 @@ const styles = StyleSheet.create({
   },
   subTitle: {
     color: "gray",
+  },
+  time: {
+    color: Colors.primary200,
   },
 });
