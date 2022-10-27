@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
     marginRight: 11,
   },
   content: {
-    // flex: 1,
+    flex: 1,
     // borderBottomColor: Colors.gray400,
     // borderBottomWidth: StyleSheet.hairlineWidth,
   },
