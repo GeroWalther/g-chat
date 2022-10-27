@@ -1,0 +1,20 @@
+{
+  "staging": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-gchat-staging-125929-authRole",
+      "UnauthRoleArn": "arn:aws:iam::259842352176:role/amplify-gchat-staging-125929-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::259842352176:role/amplify-gchat-staging-125929-authRole",
+      "Region": "eu-west-3",
+      "DeploymentBucketName": "amplify-gchat-staging-125929-deployment",
+      "UnauthRoleName": "amplify-gchat-staging-125929-unauthRole",
+      "StackName": "amplify-gchat-staging-125929",
+      "StackId": "arn:aws:cloudformation:eu-west-3:259842352176:stack/amplify-gchat-staging-125929/319fe940-55f7-11ed-8a0d-06418bd7c482",
+      "AmplifyAppId": "d3g20tlk46y31m"
+    },
+    "categories": {
+      "auth": {
+        "gchat": {}
+      }
+    }
+  }
+}

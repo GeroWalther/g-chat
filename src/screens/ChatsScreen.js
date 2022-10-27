@@ -1,7 +1,6 @@
 import { FlatList, StyleSheet } from "react-native";
 import ChatListItem from "../components/ChatListItem/ChatListItem";
 import chats from "../../assets/data/chats.json";
-import { Colors } from "../../Constants/Colors";
 
 const ChatsScreen = () => {
   return (

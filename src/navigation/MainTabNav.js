@@ -1,6 +1,8 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import ChatsScreen from "../screens/ChatsScreen";
 import NotImplementedScreen from "../screens/NotImplementedScreen";
+import SettingsScreen from "../screens/SettingsScreen";
+
 import { MaterialIcons, MaterialCommunityIcons } from "@expo/vector-icons";
 import { Colors } from "../../Constants/Colors";
 
@@ -72,7 +74,7 @@ const MainTabNavigator = () => {
         })}
       />
       <Tab.Screen name="Camera" component={NotImplementedScreen} />
-      <Tab.Screen name="Settings" component={NotImplementedScreen} />
+      <Tab.Screen name="Settings" component={SettingsScreen} />
     </Tab.Navigator>
   );
 };
