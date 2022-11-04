@@ -5,13 +5,36 @@ import { AntDesign } from "@expo/vector-icons";
 import SendButton from "../../UI/SendButton";
 import { Colors } from "../../../Constants/Colors";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { API, graphqlOperation, Auth } from "aws-amplify";
+import { createMessage, updateChatRoom } from "../../graphql/mutations";
 
-const InputBox = () => {
-  const [newMsg, setNewMsg] = useState();
+const InputBox = ({ chatroom }) => {
+  const [text, setText] = useState();
 
-  function onSend() {
-    console.warn("smth sth a messg.", newMsg);
-    setNewMsg("");
+  async function onSend() {
+    const authUser = await Auth.currentAuthenticatedUser();
+    const newMessage = {
+      chatroomID: chatroom.id,
+      text,
+      userID: authUser.attributes.sub,
+    };
+
+    const newMsgData = await API.graphql(
+      graphqlOperation(createMessage, { input: newMessage })
+    );
+
+    setText("");
+
+    // set the last msg as last msg
+    await API.graphql(
+      graphqlOperation(updateChatRoom, {
+        input: {
+          chatRoomLastMessageId: newMsgData.data.createMessage.id,
+          _version: chatroom._version,
+          id: chatroom.id,
+        },
+      })
+    );
   }
   return (
     <SafeAreaView edges={["bottom"]} style={styles.container}>
@@ -20,8 +43,8 @@ const InputBox = () => {
       <TextInput
         placeholder="start typing..."
         style={styles.input}
-        onChangeText={setNewMsg}
-        value={newMsg}
+        onChangeText={setText}
+        value={text}
       />
       <SendButton
         icon="send"
