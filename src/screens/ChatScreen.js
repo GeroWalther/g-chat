@@ -15,6 +15,8 @@ import { API, graphqlOperation } from "aws-amplify";
 import { getChatRoom, listMessagesByChatRoom } from "../graphql/queries";
 import ActivityIndicatorViewNativeComponent from "react-native/Libraries/Components/ActivityIndicator/ActivityIndicatorViewNativeComponent";
 import { onCreateMessage, onUpdateChatRoom } from "../graphql/subscriptions";
+import { Feather } from "@expo/vector-icons";
+import { Colors } from "../../Constants/Colors";
 
 const ChatScreen = ({ route, navigation }) => {
   const [chatRoom, setChatRoom] = useState(null);
@@ -70,8 +72,18 @@ const ChatScreen = ({ route, navigation }) => {
   }, [chatroomID]);
 
   useEffect(() => {
-    navigation.setOptions({ title: route.params.name });
-  }, [route.params.name]);
+    navigation.setOptions({
+      title: route.params.name,
+      headerRight: () => (
+        <Feather
+          onPress={() => navigation.navigate("Group Info", { id: chatroomID })}
+          name="more-vertical"
+          size={24}
+          color={Colors.darkGrayA}
+        />
+      ),
+    });
+  }, [route.params.name, chatroomID]);
 
   if (!chatRoom) {
     return <ActivityIndicatorViewNativeComponent />;

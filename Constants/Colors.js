@@ -13,4 +13,5 @@ export const Colors = {
   gray600: "#212529",
   chatBG: "#fd9a796a",
   whiteChatBG: "#ffffffa1",
+  darkGrayA: "#2b2b2b",
 };

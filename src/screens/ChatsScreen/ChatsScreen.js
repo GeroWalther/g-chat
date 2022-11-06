@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 
 const ChatsScreen = () => {
   const [loading, setLoading] = useState(false);
-  const [chatRoom, setCatRooms] = useState([]);
+  const [chatRooms, setCatRooms] = useState([]);
 
   const fetchChatRooms = async () => {
     setLoading(true);
@@ -15,7 +15,9 @@ const ChatsScreen = () => {
       graphqlOperation(listChatRooms, { id: authUser.attributes.sub })
     );
 
-    const rooms = response?.data?.getUser?.ChatRooms?.items || [];
+    const rooms = response?.data?.getUser?.ChatRooms?.items.filter(
+      (item) => !item._deleted
+    );
 
     const sortedRooms = rooms.sort(
       (r1, r2) =>
@@ -32,7 +34,7 @@ const ChatsScreen = () => {
 
   return (
     <FlatList
-      data={chatRoom}
+      data={chatRooms}
       style={styles.listItem}
       renderItem={({ item }) => <ChatListItem chat={item.chatRoom} />}
       refreshing={loading}
