@@ -1,0 +1,12 @@
+{
+  "resourceName": "s3gchatstorage9c74ab4e",
+  "bucketName": "g-chat-storage-9c74ab4e",
+  "policyUUID": "182a64d0",
+  "storageAccess": "auth",
+  "guestAccess": [],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ",
+    "DELETE"
+  ]
+}
