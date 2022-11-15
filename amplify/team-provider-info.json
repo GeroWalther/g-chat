@@ -17,6 +17,9 @@
       },
       "api": {
         "gchat": {}
+      },
+      "storage": {
+        "s3gchatstorage9c74ab4e": {}
       }
     }
   }
