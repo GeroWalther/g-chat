@@ -12,7 +12,6 @@ import relativeTime from "dayjs/plugin/relativeTime";
 import { Colors } from "../../../Constants/Colors";
 dayjs.extend(relativeTime);
 import { Auth, Storage } from "aws-amplify";
-import { S3Image } from "aws-amplify-react-native";
 import ImageView from "react-native-image-viewing";
 
 const Message = ({ message }) => {
@@ -54,11 +53,31 @@ const Message = ({ message }) => {
         },
       ]}
     >
-      {imageSrc.length > 0 && (
-        <>
+      {/* {imageSrc?.length > 0 && (
+        <View style={[{ width: imageContainerWidth }, styles.images]}>
           {imageSrc.map((imageSrc) => (
-            <Pressable onPress={() => setImageViewerVisible(true)}>
+            <Pressable
+              style={[
+                styles.imageContainer,
+                imageSrc.length === 1 && { flex: 1 },
+              ]}
+              onPress={() => setImageViewerVisible(true)}
+            >
               <Image source={imageSrc} style={styles.image} />
+            </Pressable>
+          ))} */}
+
+      {imageSrc?.length > 0 && (
+        <View style={[{ width: imageContainerWidth }, styles.images]}>
+          {imageSrc.map((imageSource) => (
+            <Pressable
+              style={[
+                styles.imageContainer,
+                imageSrc.length === 1 && { flex: 1 },
+              ]}
+              onPress={() => setImageViewerVisible(true)}
+            >
+              <Image source={imageSource} style={styles.image} />
             </Pressable>
           ))}
 
@@ -68,7 +87,7 @@ const Message = ({ message }) => {
             visible={imageViewerVisible}
             onRequestClose={() => setImageViewerVisible(false)}
           />
-        </>
+        </View>
       )}
       <Text>{message.text}</Text>
       <Text style={styles.time}>{dayjs(message.createdAt).fromNow(true)}</Text>
@@ -101,11 +120,19 @@ const styles = StyleSheet.create({
     color: Colors.primary200,
     alignSelf: "flex-end",
   },
+  images: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+  },
+  imageContainer: {
+    width: "45%",
+    margin: 2,
+    aspectRatio: 1,
+  },
   image: {
-    width: 200,
-    height: 100,
-    borderColor: "white",
-    borderWidth: 2,
+    flex: 1,
     borderRadius: 5,
+    borderColor: "white",
+    borderWidth: 1,
   },
 });
